@@ -55,7 +55,7 @@ function escaparHTML(valor) {
 }
 
 async function carregarProdutos() {
-  statusBanco.textContent = "Conectando ao banco...";
+  statusBanco.textContent = "Miguel Prime";
   try {
     const { data, error } = await supabaseClient
       .from("produtos")
@@ -65,7 +65,7 @@ async function carregarProdutos() {
     if (error) throw error;
 
     produtos = data || [];
-    statusBanco.textContent = "Banco conectado";
+    statusBanco.textContent = "";
     statusBanco.classList.remove("erro");
     renderizarProdutos();
   } catch (error) {
