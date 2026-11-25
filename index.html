@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mercado | Produtos</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <header class="topo">
+    <div class="container topo-conteudo">
+      <div>
+        <p class="marca">MERCADO</p>
+        <h1>Produtos</h1>
+      </div>
+      <span class="status" id="status">Conectando ao banco...</span>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="painel">
+      <div class="cabecalho-secao">
+        <div>
+          <h2 id="titulo-form">Cadastrar produto</h2>
+          <p>Preencha os dados do produto abaixo.</p>
+        </div>
+      </div>
+
+      <form id="form-produto">
+        <input type="hidden" id="produto-id">
+
+        <div class="campos">
+          <label>
+            Código
+            <input id="codigo" type="text" maxlength="40" placeholder="Ex.: 001" required>
+          </label>
+          <label class="campo-grande">
+            Nome do produto
+            <input id="nome" type="text" maxlength="120" placeholder="Ex.: Arroz 5 kg" required>
+          </label>
+          <label>
+            Categoria
+            <input id="categoria" type="text" maxlength="80" placeholder="Ex.: Mercearia">
+          </label>
+          <label>
+            Quantidade em estoque
+            <input id="quantidade" type="number" min="0" step="0.01" value="0" required>
+          </label>
+          <label>
+            Preço (R$)
+            <input id="preco" type="number" min="0" step="0.01" placeholder="0,00" required>
+          </label>
+        </div>
+
+        <div class="acoes-form">
+          <button class="botao primario" type="submit" id="btn-salvar">Cadastrar produto</button>
+          <button class="botao secundario oculto" type="button" id="btn-cancelar">Cancelar edição</button>
+          <span class="mensagem" id="mensagem" role="status"></span>
+        </div>
+      </form>
+    </section>
+
+    <section class="painel">
+      <div class="cabecalho-lista">
+        <div>
+          <h2>Produtos cadastrados</h2>
+          <p id="total">Carregando produtos...</p>
+        </div>
+        <label class="pesquisa">
+          <span class="sr-only">Pesquisar produtos</span>
+          <input id="pesquisa" type="search" placeholder="Pesquisar por nome, código ou categoria...">
+        </label>
+      </div>
+
+      <div class="tabela-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Código</th>
+              <th>Produto</th>
+              <th>Categoria</th>
+              <th>Estoque</th>
+              <th>Preço</th>
+              <th class="col-acoes">Ações</th>
+            </tr>
+          </thead>
+          <tbody id="lista-produtos">
+            <tr><td colspan="6" class="vazio">Carregando...</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+    <footer>Cadastro de produtos • Sistema simples para mercado</footer>
+  </main>
+</body>
+</html>
